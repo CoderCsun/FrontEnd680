@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="background-image"></div>
+  <mat-card class="transparent-card" *ngIf="!createTicket">
+    <mat-card-header>
+      <mat-card-subtitle>Step 1</mat-card-subtitle>
+      <mat-card-title>Generate Description For Jira Ticket Using ChatGPT</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p style="margin: 4%;">
+        <mat-form-field appearance="outline" style="width: 450px;">
+          <mat-label>Enter a title</mat-label>
+          <input matInput placeholder="Placeholder" type="text" [formControl]="title">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+
+        </mat-form-field>
+      </p>
+
+    </mat-card-content>
+    <mat-card-actions style="display: flex;
+        justify-content: center;">
+      <button mat-raised-button color="primary" style="background-color: lch(41 36.04 258.99);"
+        (click)="submit(title.value)">Submit</button>
+    </mat-card-actions>
+    <mat-card-footer>
+      <mat-progress-bar mode="determinate"></mat-progress-bar>
+    </mat-card-footer>
+  </mat-card>
+  <mat-card class="transparent-card" *ngIf="createTicket" style="width: 830px;height: 500px;">
+    <mat-card-header>
+      <mat-card-subtitle>Step 2</mat-card-subtitle>
+      <mat-card-title>Create JIRA Ticket</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div style="background-color: white;
+            border: 2px solid #9ec2e1;
+            padding: 8px;overflow: auto;
+    height: 350px;">
+
+        <pre>
+                {{description}}
+               </pre>
+      </div>
+
+    </mat-card-content>
+    <mat-card-actions style="display: flex;
+        justify-content: space-between;">
+      <button mat-raised-button color="primary"
+        style="align-items: center;margin: 2%;background-color: lch(41 36.04 258.99);" (click)="back()">Back</button>
+      <button mat-raised-button color="primary"
+        style="align-items: center;margin: 2%;background-color: lch(41 36.04 258.99);"
+        (click)="create()">Create</button>
+    </mat-card-actions>
+
+  </mat-card>
+</div>
